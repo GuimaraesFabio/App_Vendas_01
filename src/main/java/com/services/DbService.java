@@ -1,5 +1,6 @@
 package com.services;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import com.domain.Cidade;
 import com.domain.Cliente;
 import com.domain.Endereco;
 import com.domain.Estado;
+import com.domain.Pedido;
 import com.domain.Produto;
 import com.enums.TipoCliente;
 import com.repositories.CategoriaRepository;
@@ -82,6 +84,10 @@ public class DbService {
 		cli1.getEnderecos().addAll(Arrays.asList(e1, e2));
 		_clienteRepo.saveAll(Arrays.asList(cli1));
 		_enderecoRepo.saveAll(Arrays.asList(e1, e2));
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+		
+		
 
 	}
 }
