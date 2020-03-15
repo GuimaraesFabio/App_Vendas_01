@@ -84,6 +84,15 @@ public class Produto {
 		this.itens = itens;
 	}
 
+	@JsonIgnore
+	public Set<Pedido> getPedidos() {
+		Set<Pedido> set = new HashSet<>();
+		for (ItemPedido x : itens) {
+			set.add(x.getPedido());
+		}
+		return set;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
