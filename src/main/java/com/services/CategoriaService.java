@@ -5,6 +5,9 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,6 +32,12 @@ public class CategoriaService {
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Object not found"));
 	}
 
+	public Page<Categoria> findPage(Integer page, Integer linePerPage, String direction, String orderBy) {
+		PageRequest pr = PageRequest.of(page, linePerPage, Direction.valueOf(direction), orderBy);
+		return _repository.findAll(pr);
+	}
+
+	@Transactional
 	public Categoria insert(Categoria obj) {
 		if (obj.getId() == null) {
 			_repository.save(obj);
@@ -36,7 +45,6 @@ public class CategoriaService {
 		return obj;
 	}
 
-	@Transactional
 	public Categoria update(Categoria obj) {
 		Categoria newObj = findById(obj.getId());
 		updateData(newObj, obj);
