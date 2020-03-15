@@ -1,11 +1,16 @@
 package com.domain;
 
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -17,6 +22,10 @@ public class Produto {
 	private Integer id;
 	private String nome;
 	private Double preco;
+
+	@ManyToMany
+	@JoinTable(name = "tb_produto_categoria", joinColumns = @JoinColumn(name = "produto_id"), inverseJoinColumns = @JoinColumn(name = "categoria_id"))
+	private Set<Categoria> categorias = new HashSet<>();
 
 	public Produto() {
 	}
@@ -49,6 +58,14 @@ public class Produto {
 
 	public void setPreco(Double preco) {
 		this.preco = preco;
+	}
+
+	public Set<Categoria> getCategorias() {
+		return categorias;
+	}
+
+	public void setCategorias(Set<Categoria> categorias) {
+		this.categorias = categorias;
 	}
 
 	@Override
