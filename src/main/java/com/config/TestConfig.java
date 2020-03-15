@@ -1,5 +1,7 @@
 package com.config;
 
+import java.text.ParseException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,7 +17,7 @@ public class TestConfig {
 	private DbService _dbService;
 
 	@Bean
-	public boolean instanciateDataBase() {
+	public boolean instanciateDataBase() throws ParseException {
 
 		_dbService.InstanciateTestDataBase();
 		return true;
