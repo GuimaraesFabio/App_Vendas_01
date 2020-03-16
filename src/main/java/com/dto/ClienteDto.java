@@ -8,7 +8,9 @@ import javax.validation.constraints.NotEmpty;
 import org.hibernate.validator.constraints.Length;
 
 import com.domain.Cliente;
+import com.services.validation.ClienteUpdate;
 
+@ClienteUpdate
 public class ClienteDto implements Serializable {
 
 	/**
@@ -16,19 +18,19 @@ public class ClienteDto implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private Integer id;
-	
+
 	@NotEmpty(message = "Campo obrigatorio")
 	@Length(min = 5, max = 120, message = "Tamanho do campo nome deve estar entre 5 a 120 caracteres")
 	private String nome;
 	@NotEmpty(message = "Campo obrigatorio")
 	@Email(message = "Email invalido")
 	private String email;
-	
+
 	public ClienteDto() {
 	}
 
 	public ClienteDto(Cliente obj) {
-		
+
 		id = obj.getId();
 		nome = obj.getNome();
 		email = obj.getEmail();
@@ -57,6 +59,5 @@ public class ClienteDto implements Serializable {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
-	
+
 }

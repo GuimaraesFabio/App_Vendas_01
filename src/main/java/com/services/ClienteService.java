@@ -77,6 +77,7 @@ public class ClienteService {
 	private void updateData(Cliente newObj, Cliente obj) {
 
 		newObj.setNome(obj.getNome());
+		newObj.setEmail(obj.getEmail());
 	}
 
 	public Cliente fromDto(ClienteDto objDto) {
